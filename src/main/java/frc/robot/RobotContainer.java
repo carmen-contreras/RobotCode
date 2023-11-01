@@ -28,33 +28,15 @@ public class RobotContainer
     public POVButton povDown = new POVButton(joy, 180, 0);
     public POVButton povLeft = new POVButton(joy, 270, 0); 
 
-  // FOR AUTO
-
-  SendableChooser<Command> m_chooser;
-
     public RobotContainer() 
     {
 
       configureButtonBindings();
       
-      configureSendableChooser();
     };
 
     private void configureButtonBindings() 
     {
 
-    }
-
-    public Command getAutoCommand()
-    {
-      return this.m_chooser.getSelected();
-    }
-
-    private void configureSendableChooser() 
-    {
-      this.m_chooser = new SendableChooser<Command>();
-     //m_chooser.setDefaultOption("Bottom Charge", "Bottom Charge");
-
-      SmartDashboard.putData("Auto Path Selector", this.m_chooser);
     }
 }
