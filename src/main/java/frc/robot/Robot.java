@@ -3,15 +3,7 @@ package frc.robot;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.DriverStation;
 
-/**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
- * project.
- */
 public class Robot extends TimedRobot 
 {
   
@@ -20,14 +12,9 @@ public class Robot extends TimedRobot
 
   //Subsystems
 
-
   //Navx
   public static AHRS m_ahrs;
 
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
 
   public Robot() 
   {
@@ -36,15 +23,6 @@ public class Robot extends TimedRobot
     
     //Container
     m_robotContainer = new RobotContainer();
-
-    //Navx
-    try {
-          m_ahrs = new AHRS(SPI.Port.kMXP); 
-        } catch (RuntimeException ex ) {
-            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-        }
-      
-    
 
   }
   @Override
@@ -59,12 +37,6 @@ public class Robot extends TimedRobot
    */
   @Override
   public void robotPeriodic() {
-    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-    // commands, running already-scheduled commands, removing finished or interrupted commands,
-    // and running subsystem periodic() methods.  This must be called from the robot's periodic
-    // block in order for anything in the Command-based framework to work.
-    CommandScheduler.getInstance().run();
-
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
