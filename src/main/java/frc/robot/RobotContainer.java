@@ -2,10 +2,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import frc.robot.commands.Backwards;
+import frc.robot.commands.Forwards;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class RobotContainer  
 {
+  public Command forwards;
+  public Command backwards;
 
     // Driver Controller
     public Joystick joy = new Joystick(0);
@@ -28,12 +34,30 @@ public class RobotContainer
     public RobotContainer() 
     {
 
+      forwards = new Forwards();
+      backwards = new Backwards();
+
       configureButtonBindings();
       
     };
 
     private void configureButtonBindings() 
     {
-
+      this.y_button.onTrue(forwards);
+      this.y_button.onFalse(new InstantCommand(){
+        public void initialize()
+        {
+          forwards.cancel();
+        }
+      });
+     
+     
+      this.a_button.onTrue(backwards);
+      this.a_button.onFalse(new InstantCommand() {
+        public void initialize()
+        {
+          backwards.cancel();
+        }   
+       });
     }
 }
